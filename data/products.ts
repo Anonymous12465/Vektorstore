@@ -119,23 +119,6 @@ export const products: Product[] = [
     inStock: true
   },
   {
-    id: "9",
-    name: "Shirt polo with Pocket",
-    price: 29.99,
-    description: "Add an effortless, refined touch to your warm-weather wardrobe with this light khaki open-collar polo shirt. Crafted from a breathable, lightweight knit fabric, it features a relaxed open V-neckline, short sleeves, a functional chest patch pocket, and a clean straight hem with side vents for ease of movement. Its versatile neutral shade makes it an easy piece to dress up with tailored trousers or keep casual with denim.",
-    colors: [
-      { name: "grey", hex: "#8C8B7C" },
-      { name: "sand", hex: "#C8BFAB" },
-    ],
-    sizes: ["S", "M", "L", "XL"],
-    category: "Tops",
-    image: '/images/products/pocket shirt.jpg',
-    additionalImages: [
-      "/images/products/pocket shirt1.jpg"
-    ],
-    inStock: true
-  },
-  {
     id: "10",
     name: "Blue Shirt polo",
     price: 29.99,
