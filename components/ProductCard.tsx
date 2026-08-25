@@ -8,8 +8,13 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  // FIXED: was linking with product.id (`/product/${product.id}`), but the
+  // detail page now looks products up by NAME via getProductByName().
+  // That mismatch is why products weren't showing — every link 404'd /
+  // hit "Product Not Found" because no product's name equals its id.
+  // encodeURIComponent handles spaces and special characters in the name.
   return (
-    <Link href={`/product/${product.id}`} className="group">
+    <Link href={`/product/${encodeURIComponent(product.name)}`} className="group">
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
         <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
           <Image
