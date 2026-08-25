@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getProductById } from '@/data/products';
+import { getProductByName } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/components/ToastProvider';
 
@@ -12,13 +12,31 @@ export default function ProductDetailPage() {
   const router = useRouter();
   const { addToCart } = useCart();
   const { showToast } = useToast();
-  
+
   const [selectedColor, setSelectedColor] = useState('');
-  const [selectedSize, setSelectedSize] = useState(''); // <-- Added Size State
+  const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
-  const product = getProductById(params.id as string);
+  // Match product by name from the URL (folder is [name], not [id]).
+  const product = getProductByName((params.name as string) || '');
+
+  // FIXED: these were previously called directly in the render body
+  // (`if (!selectedColor) setSelectedColor(...)`), which is invalid in React —
+  // updating state during render can trigger "Cannot update state during render"
+  // warnings and even infinite re-render loops. Moved into useEffect so they
+  // only run once, after the product data is available / changes.
+  useEffect(() => {
+    if (!product) return;
+
+    if (!selectedColor && product.colors.length > 0) {
+      setSelectedColor(product.colors[0].name);
+    }
+    if (!selectedSize && product.sizes && product.sizes.length > 0) {
+      setSelectedSize(product.sizes[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product]);
 
   if (!product) {
     return (
@@ -32,16 +50,6 @@ export default function ProductDetailPage() {
         </button>
       </div>
     );
-  }
-
-  // Set default color on mount
-  if (!selectedColor && product.colors.length > 0) {
-    setSelectedColor(product.colors[0].name);
-  }
-
-  // Set default size on mount if available
-  if (!selectedSize && product.sizes && product.sizes.length > 0) {
-    setSelectedSize(product.sizes[0]);
   }
 
   const handleAddToCart = () => {
@@ -144,7 +152,7 @@ export default function ProductDetailPage() {
             <div>
               <h3 className="font-medium text-black mb-3">Color: {selectedColor}</h3>
               <div className="flex flex-wrap gap-3">
-                {product.colors.map((color) => (
+                {product.colors.map((color: { name: string; hex: string }) => (
                   <button
                     key={color.name}
                     onClick={() => setSelectedColor(color.name)}
@@ -167,7 +175,7 @@ export default function ProductDetailPage() {
             <div>
               <h3 className="font-medium text-black mb-3">Size: <span className="font-bold">{selectedSize}</span></h3>
               <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
+                {product.sizes.map((size: string) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}

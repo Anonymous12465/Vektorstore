@@ -10,6 +10,8 @@ export default function TopCategories() {
     { name: "Kitchen Appliances", image: "/images/products/j3.jpg", href: "/products?category=Kitchen Appliances" },
         { name: "Footwear", image: "/images/products/shoes3.jpg", href: "/products?category=Footwear" },
         { name: "Cycling", image: "/images/products/b1.jpg", href: "/products?category=Cycling" },
+        { name: "Tools", image: "/images/products/t2.png", href: "/products?category=Tools" },
+                        { name: "Gadgets", image: "/images/products/t11.jpg", href: "/products?category=Gadgets" }
 
 
   ];

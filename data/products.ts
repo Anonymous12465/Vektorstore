@@ -953,6 +953,124 @@ id: "54",
     "/images/products/k2.jpg"
   ],
   inStock: true
+},
+{
+  id: "57",
+  name: "Professional Mechanics Tool Kit & Socket Set",
+  price: 129.99,
+  description: "Equip your workspace with this comprehensive Professional Mechanics Tool Kit, featuring a robust assortment of high-grade steel sockets, ratchets, wrenches, screwdrivers, pliers, and a hammer. Housed in a heavy-duty molded storage case for seamless organization and portability, this multi-piece toolkit is engineered to handle automotive repairs, home improvement projects, and general mechanical tasks with absolute precision.",
+  colors: [
+    { "name": "Industrial Blue & Black", "hex": "#00a8cc" },
+    { "name": "Chrome Steel", "hex": "#c0c0c0" }
+  ],
+  category: "Tools",
+  sizes: ["Standard Professional Set"],
+  image: "/images/products/t2.png",
+  additionalImages: [
+    "/images/products/t1.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "58",
+  name: "Complete Handyman & DIY Tool Set with Storage Case",
+  price: 89.99,
+  description: "Get ready for any home improvement or DIY project with this Complete Handyman Tool Set. Featuring a yellow-and-black toolbox, safety goggles, high-visibility vest, work gloves, precision saws, screwdrivers, a hammer, measuring tape, level, pliers, and various workshop essentials, this all-in-one collection gives you everything you need for quick repairs and creative builds.",
+  colors: [
+    { "name": "Yellow & Black", "hex": "#ffcc00" },
+    { "name": "Safety Orange", "hex": "#ff6600" }
+  ],
+  category: "Tools",
+  sizes: ["Standard Kit"],
+  image: "/images/products/t3.png",
+  additionalImages: [
+    "/images/products/t4.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "59",
+  name: "Professional 48V Cordless Li-Ion Power Drill",
+  price: 149.99,
+  description: "Power through your toughest DIY and construction projects with this high-performance 48V Cordless Li-Ion Drill. Featuring a comfortable ergonomic grip, variable speed control, a heavy-duty keyless chuck, and a long-lasting rechargeable battery, this professional-grade power tool delivers reliable torque and precision for drilling and fastening tasks.",
+  colors: [
+    { "name": "Yellow & Black", "hex": "#ffcc00" },
+    { "name": "Metallic Silver", "hex": "#c0c0c0" }
+  ],
+  category: "Tools",
+  sizes: ["Standard Drill Size"],
+  image: "/images/products/t5.png",
+  additionalImages: [
+    "/images/products/t6.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "60",
+  name: "Compact Cordless Screwdriver & Drill Bit Accessory Kit",
+  price: 59.99,
+  description: "Tackle household repairs, furniture assembly, and tight-space fastening with ease using this Compact Cordless Screwdriver and Accessory Kit. Featuring an ergonomic purple-and-black pistol grip design, a built-in wrist strap for secure handling, a dedicated power adapter, and an extensive assortment of interchangeable drill bits and magnetic driver bits, this lightweight tool delivers reliable performance for everyday DIY projects.",
+  colors: [
+    { "name": "Deep Purple & Black", "hex": "#4a2858" },
+    { "name": "Silver Metallic", "hex": "#c0c0c0" }
+  ],
+  category: "Tools",
+  sizes: ["Compact Handheld Size"],
+  image: "/images/products/t7.png",
+  additionalImages: [
+    "/images/products/t8.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "61",
+  name: "UGREEN Nexode 200W 25000mAh Portable Power Bank & Charger",
+  price: 139.99,
+  description: "Stay powered anywhere with the high-capacity UGREEN Nexode 200W Portable Power Bank. Featuring advanced PD 3.1 fast-charging technology, a smart TFT digital display, multiple high-speed USB ports, a built-in carrying handle, and an integrated ambient light strip, this heavy-duty power station is designed to rapidly charge multiple laptops, tablets, and mobile devices simultaneously.",
+  colors: [
+    { "name": "Space Gray", "hex": "#4a4e53" },
+    { "name": "Black Accent", "hex": "#1b1b1b" }
+  ],
+  category: "Gadgets",
+  sizes: ["25000mAh Portable Capacity"],
+  image: "/images/products/t9.png",
+  additionalImages: [
+    "/images/products/t10.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "62",
+  name: "Elegance Smartwatch with Built-In Flashlight & Rhinestone Bezel",
+  price: 79.99,
+  description: "Blend chic style with modern utility using this Elegance Smartwatch. Featuring a sparkling rhinestone-embellished round bezel, a comfortable grey silicone strap, comprehensive fitness tracking metrics, and a unique built-in side flashlight for convenient illumination on the go, this versatile smartwatch keeps you connected and prepared in style.",
+  colors: [
+    { "name": "Grey & Silver", "hex": "#808080" },
+    { "name": "Rose Gold Accents", "hex": "#b76e79" }
+  ],
+  category: "Gadgets",
+  sizes: ["Adjustable Standard Strap"],
+  image: "/images/products/t11.jpg",
+  additionalImages: [
+    "/images/products/t12.jpg"
+  ],
+  inStock: true
+},
+{
+  id: "63",
+  name: "Smart Bluetooth Item Tracker & Key Finder (4-Pack)",
+  price: 34.99,
+  description: "Never lose your valuables again with this 4-pack of Smart Bluetooth Item Trackers. Designed with a sleek, compact square shape, key-ring hole, and easy-press locator button, these trackers sync with your smartphone to help you easily locate keys, wallets, luggage, pets, and bags with real-time mapping and audible alerts.",
+  colors: [
+    { "name": "Matte Black", "hex": "#1b1b1b" }
+  ],
+  category: "Gadgets",
+  sizes: ["4-Pack Set"],
+  image: "/images/products/t13.jpg",
+  additionalImages: [
+    "/images/products/t14.jpg"
+  ],
+  inStock: true
 }
 ];
 
@@ -975,4 +1093,9 @@ export function searchProducts(query: string): Product[] {
 
 export function getAllCategories(): string[] {
   return Array.from(new Set(products.map(product => product.category)));
+}
+
+export function getProductByName(name: string): Product | undefined {
+  const decoded = decodeURIComponent(name).trim().toLowerCase();
+  return products.find(product => product.name.trim().toLowerCase() === decoded);
 }

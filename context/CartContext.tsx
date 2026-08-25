@@ -21,23 +21,56 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+// How long a saved cart stays valid before it's treated as stale and cleared.
+// Change this value to configure the expiry window (currently 7 days).
+const CART_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000;
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage on mount, honoring expiry.
   useEffect(() => {
-    const savedCart = localStorage.getItem('vektorstore-cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+    try {
+      const savedCartRaw = localStorage.getItem('vektorstore-cart');
+      if (savedCartRaw) {
+        const parsed = JSON.parse(savedCartRaw);
+
+        // Support both the new format ({ items, savedAt }) and the old
+        // plain-array format that was saved before expiry was added, so
+        // existing users don't lose their cart on the first load after
+        // this update ships.
+        if (Array.isArray(parsed)) {
+          setCart(parsed);
+        } else if (parsed && Array.isArray(parsed.items)) {
+          const isExpired = Date.now() - parsed.savedAt > CART_EXPIRY_MS;
+          if (isExpired) {
+            localStorage.removeItem('vektorstore-cart');
+            setCart([]);
+          } else {
+            setCart(parsed.items);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error);
+      localStorage.removeItem('vektorstore-cart');
     }
     setIsLoaded(true);
   }, []);
 
-  // Save cart to localStorage whenever it changes
+  // Save cart to localStorage whenever it changes, along with a timestamp
+  // so stale carts can be detected and cleared on future loads.
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem('vektorstore-cart', JSON.stringify(cart));
+      try {
+        localStorage.setItem(
+          'vektorstore-cart',
+          JSON.stringify({ items: cart, savedAt: Date.now() })
+        );
+      } catch (error) {
+        console.error('Failed to save cart to localStorage:', error);
+      }
     }
   }, [cart, isLoaded]);
 

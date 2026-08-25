@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function CollectionSections() {
   // Aapke products.ts file ki actual categories
 // Updated categories array
-const categories = ["Tops", "Bottoms", "Home & Living", "Watches", "Footwear", "Kitchen Appliances" , "Cycling"];
+const categories = ["Tops", "Bottoms", "Home & Living", "Watches", "Footwear", "Kitchen Appliances" , "Cycling", "tools", "gadgets"];
   return (
     <>
       {categories.map((collectionName) => {
