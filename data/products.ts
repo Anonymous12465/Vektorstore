@@ -71,22 +71,6 @@ export const products: Product[] = [
     inStock: true
   },
   {
-    id: "4",
-    name: "Beige Color Premium",
-    price: 54.99,
-    description: "Embrace laid-back vibes with this off-white graphic hoodie, featuring a relaxed streetwear fit and a striking illustration on the back. The whimsical artwork showcases a skeleton chilling under a palm tree on a tiny island, accompanied by the bold text Crafted from cozy, soft fleece fabric with a roomy hood and ribbed trims, it combines ultimate comfort with a playful, sarcastic edge.",
-    colors: [
-      { name: "Beige", hex: "#F4F0E6" }
-    ],
-    sizes: ["S", "M", "L"],
-    category: "Tops",
-    image: '/images/products/Beige.webp',
-    additionalImages: [
-      "/images/products/beige.jpg"
-    ],
-    inStock: true
-  },
-  {
     id: "5",
     name: "Olive Color Premium Hoodie",
     price: 54.99,
