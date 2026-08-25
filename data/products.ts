@@ -103,22 +103,6 @@ export const products: Product[] = [
     inStock: true
   },
   {
-    id: "7",
-    name: "Black Oversize Shirts",
-    price: 28.99,
-    description: "Add a timeless, sporty layer to your everyday wardrobe with this crisp off-white full-zip hoodie from U.S. Polo Assn. Designed with a clean, athletic fit, it features a sturdy center zipper, an adjustable drawstring hood, split kangaroo pockets, and ribbed cuffs and hem for a secure fit. The minimalist design is elevated by matching tonal drawstrings and the brand's iconic embroidered polo player logo on the chest in contrasting dark thread, offering an effortless blend of comfort and casual sophistication.",
-    colors: [
-      { name: "White", hex: "#fafafa" }
-    ],
-    sizes: ["M", "L", "XL"],
-    category: "Tops",
-    image: '/images/products/black oversize.avif',
-    additionalImages: [
-      "/images/products/black.jpg"
-    ],
-    inStock: true
-  },
-  {
     id: "8",
     name: "Girls White oversize Shirt",
     price: 29.99,
@@ -164,22 +148,6 @@ export const products: Product[] = [
     image: '/images/products/blue.jpg',
     additionalImages: [
       "/images/products/blue1.jpg"
-    ],
-    inStock: true
-  },
-  {
-    id: "11",
-    name: "White Swet Shirt Women",
-    price: 34.99,
-    description: "Refresh your smart-casual essentials with this crisp, clean white long-sleeve polo shirt. Designed with a classic collared neckline, a short button placket, and relaxed long sleeves with ribbed cuffs, it offers a versatile blend of comfort and polished style that transitions effortlessly through the seasons.",
-    colors: [
-      { name: "White", hex: "#ffffff" }
-    ],
-    sizes: ["S", "M", "L"],
-    category: "Tops",
-    image: '/images/products/wet.Avif',
-    additionalImages: [
-      "/images/products/wet.jpg"
     ],
     inStock: true
   },
@@ -492,21 +460,6 @@ export const products: Product[] = [
   sizes: [],
   category: "Watches",
   image: '/images/products/w4.webp',
-  additionalImages: [
-  ],
-  inStock: true
-},
-{
-  id: "32",
-  name: "OLEVS Two-Tone Blue Dial Quartz Watch Set",
-  price: 79.99,
-  description: "Add a touch of elegance to your wrist with this stunning OLEVS quartz watch. Featuring a vibrant sunburst blue dial accented with crystal markers and Roman numerals, a faceted bezel, and a sophisticated silver and gold two-tone stainless steel link bracelet. Complete with a convenient date display and an included link-adjustment tool for a custom fit.",
-  colors: [
-    { name: "Silver & Gold", hex: "#C0C0C0" }
-  ],
-  sizes: [],
-  category: "Watches",
-  image: '/images/products/w5.avif',
   additionalImages: [
   ],
   inStock: true
